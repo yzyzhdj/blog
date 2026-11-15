@@ -1,0 +1,14 @@
+# Hugo
+public/
+resources/_gen/
+.hugo_build.lock
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Node（仅在本地使用 wrangler 时需要）
+node_modules/
+.wrangler/

@@ -1,0 +1,145 @@
+# ============================================================
+#  站点基础配置
+#  部署到 Cloudflare Pages 后，把 baseURL 改成你的正式域名即可
+#  （例如 "https://wang-blog.pages.dev/" 或 "https://blog.yourdomain.com/"）
+# ============================================================
+baseURL = "https://wang-blog.pages.dev/"
+title = "拾光笔记"
+locale = "zh-cn"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 60
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 8
+
+# ------------------------------------------------------------
+#  站点参数
+# ------------------------------------------------------------
+[params]
+  env = "production"
+  description = "拾光笔记 —— 记录技术、设计与生活里的微小光亮。"
+  author = "拾光"
+  keywords = ["博客", "Hugo", "前端开发", "云原生", "独立开发", "随笔"]
+  defaultTheme = "auto"          # auto / light / dark
+  mainSections = ["posts"]
+
+  # 阅读体验
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowToc = true                 # 文章目录
+  TocOpen = false                # 目录默认折叠
+  ShowShareButtons = false
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = true
+  disableSpecial1stPost = true
+  disableScrollToTop = false
+  hideFooter = false
+
+  # 归档页只展示文章（设为 true 会额外包含关于等单页）
+  ShowAllPagesInArchive = false
+
+  # 顶栏 Logo：文字 + 内联 SVG 图标
+  [params.label]
+    text = "拾光笔记"
+    iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.6l2.3 8.1 8.1 2.3-8.1 2.3L12 22.4l-2.3-8.1L1.6 12l8.1-2.3z"/></svg>'
+
+  # 首页问候卡片
+  [params.homeInfoParams]
+    Title = "你好，我是拾光"
+    Content = """
+这里记录我在 **前端工程、云原生与独立开发** 路上的思考与实践。
+
+写代码，也写生活；慢一点，但持续生长。
+"""
+
+  # 社交图标：取消注释并替换成自己的链接即可出现在首页与文章底部
+  # [[params.socialIcons]]
+  #   name = "github"
+  #   url = "https://github.com/yourname"
+  # [[params.socialIcons]]
+  #   name = "mail"
+  #   url = "mailto:you@example.com"
+  # [[params.socialIcons]]
+  #   name = "x"
+  #   url = "https://x.com/yourname"
+
+  # favicon 等静态资源
+  [params.assets]
+    favicon = "favicon.ico"
+    favicon16x16 = "favicon-16x16.png"
+    favicon32x32 = "favicon-32x32.png"
+    apple_touch_icon = "apple-touch-icon.png"
+    safari_pinned_tab = "safari-pinned-tab.svg"
+    theme_color = "#101318"
+    msapplication_TileColor = "#101318"
+
+  # 站内搜索（Fuse.js）
+  [params.fuseOpts]
+    isCaseSensitive = false
+    ignoreDiacritics = true
+    includeScore = true
+    includeMatches = false
+    minMatchCharLength = 1
+    shouldSort = true
+    findAllMatches = false
+    threshold = 0.4
+    location = 0
+    distance = 100
+    maxPatternLength = 32
+    keys = ["title", "permalink", "summary", "content"]
+
+# ------------------------------------------------------------
+#  导航菜单
+# ------------------------------------------------------------
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 40
+
+# ------------------------------------------------------------
+#  输出格式：home 额外输出 JSON 供站内搜索使用
+# ------------------------------------------------------------
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# ------------------------------------------------------------
+#  Markdown 渲染
+# ------------------------------------------------------------
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false

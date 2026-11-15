@@ -21,7 +21,7 @@ theme = "PaperMod"
 [params]
   env = "production"
   description = "汉德君的博客 —— 记录技术、设计与生活里的微小光亮。"
-  author = "拾光"
+  author = "汉德君"
   keywords = ["博客", "Hugo", "前端开发", "云原生", "独立开发", "随笔"]
   defaultTheme = "dark"          # auto / light / dark
   mainSections = ["posts"]

@@ -1,0 +1,99 @@
+{{- define "main" }}
+
+{{- $posts := where site.RegularPages "Type" "posts" -}}
+{{- $hero := site.Params.hero -}}
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      {{ $hero.eyebrow | default "PERSONAL BLOG · ENGINEERING & PRODUCT" }}
+    </p>
+    <h1 class="hero-title">
+      {{ $hero.title | default "工程实践，" }}<br />
+      <span class="hero-gradient">{{ $hero.titleAccent | default "讲得简单一点" }}</span>
+    </h1>
+    <p class="hero-desc">{{ $hero.description | default site.Params.description }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ "posts/" | relLangURL }}">
+        浏览文章
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M13 6l6 6-6 6" /></svg>
+      </a>
+      <a class="btn btn-ghost" href="{{ "about/" | relLangURL }}">关于我</a>
+    </div>
+    <dl class="hero-stats">
+      <div class="hero-stat">
+        <dt>文章</dt>
+        <dd>{{ len $posts }}</dd>
+      </div>
+      <div class="hero-stat">
+        <dt>标签</dt>
+        <dd>{{ len site.Taxonomies.tags }}</dd>
+      </div>
+      <div class="hero-stat">
+        <dt>最近更新</dt>
+        <dd>{{ with (index $posts.ByLastmod.Reverse 0) }}{{ .Lastmod.Format "2006.01" }}{{ else }}-{{ end }}</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <header class="section-head">
+    <h2>最新文章</h2>
+    <a class="section-link" href="{{ "posts/" | relLangURL }}">全部文章 →</a>
+  </header>
+  <div class="post-grid">
+    {{- range first 6 $posts }}
+    <article class="post-card">
+      <a class="post-card-link" href="{{ .Permalink }}" aria-label="{{ .Title }}"></a>
+      <div class="post-card-top">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+        {{- with .Params.categories }}
+        <span class="post-card-cat">{{ index . 0 }}</span>
+        {{- end }}
+      </div>
+      <h3 class="post-card-title">{{ .Title }}</h3>
+      <p class="post-card-desc">{{ .Summary | plainify | truncate 96 }}</p>
+      <div class="post-card-foot">
+        <span class="post-card-read">{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>
+        {{- with .Params.tags }}
+        <span class="post-card-tags">{{ range first 2 . }}#{{ . }} {{ end }}</span>
+        {{- end }}
+      </div>
+    </article>
+    {{- end }}
+  </div>
+</section>
+
+{{- if site.Taxonomies.tags }}
+<section class="section">
+  <header class="section-head">
+    <h2>主题标签</h2>
+    <a class="section-link" href="{{ "tags/" | relLangURL }}">全部标签 →</a>
+  </header>
+  <div class="tag-cloud">
+    {{- range $name, $taxonomy := site.Taxonomies.tags }}
+    <a class="tag-chip" href="{{ $taxonomy.Page.Permalink }}">
+      #{{ $name }}
+      <span>{{ $taxonomy.Count }}</span>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+<section class="cta-band">
+  <div class="cta-copy">
+    <h2>订阅更新</h2>
+    <p>通过 RSS 第一时间读到新文章，也可以在关于页更具体地认识我。</p>
+  </div>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="{{ "index.xml" | relLangURL }}">RSS 订阅</a>
+    <a class="btn btn-ghost" href="{{ "about/" | relLangURL }}">关于我</a>
+  </div>
+</section>
+
+{{- end }}

@@ -23,7 +23,7 @@ theme = "PaperMod"
   description = "拾光笔记 —— 记录技术、设计与生活里的微小光亮。"
   author = "拾光"
   keywords = ["博客", "Hugo", "前端开发", "云原生", "独立开发", "随笔"]
-  defaultTheme = "auto"          # auto / light / dark
+  defaultTheme = "dark"          # auto / light / dark
   mainSections = ["posts"]
 
   # 阅读体验
@@ -49,14 +49,12 @@ theme = "PaperMod"
     text = "拾光笔记"
     iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.6l2.3 8.1 8.1 2.3-8.1 2.3L12 22.4l-2.3-8.1L1.6 12l8.1-2.3z"/></svg>'
 
-  # 首页问候卡片
-  [params.homeInfoParams]
-    Title = "你好，我是拾光"
-    Content = """
-这里记录我在 **前端工程、云原生与独立开发** 路上的思考与实践。
-
-写代码，也写生活；慢一点，但持续生长。
-"""
+  # 首页 Hero 文案
+  [params.hero]
+    eyebrow = "PERSONAL BLOG · ENGINEERING & PRODUCT"
+    title = "工程实践，"
+    titleAccent = "讲得简单一点"
+    description = "记录前端工程、云原生与独立开发路上的思考与实践。写代码，也写生活；慢一点，但持续生长。"
 
   # 社交图标：取消注释并替换成自己的链接即可出现在首页与文章底部
   # [[params.socialIcons]]

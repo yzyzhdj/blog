@@ -1,0 +1,64 @@
+{{- /*
+  覆盖主题的 schema_json：用 jsonify 生成合法 JSON-LD
+  （主题原模板在相对 baseURL 下会输出非法 JSON，导致 hugo --minify 失败）
+*/ -}}
+{{- $logo := (site.Params.assets.favicon | default "favicon.ico") | absURL -}}
+{{- $publisherType := site.Params.schema.publisherType | default "Organization" -}}
+{{- $publisher := dict
+  "@type" $publisherType
+  "name" site.Title
+  "logo" (dict "@type" "ImageObject" "url" $logo)
+-}}
+{{- $sameAs := slice -}}
+{{- with site.Params.socialIcons -}}
+  {{- range . -}}
+    {{- with .url -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{{- dict
+  "@context" "https://schema.org"
+  "@type" $publisherType
+  "name" site.Title
+  "url" site.Home.Permalink
+  "description" (site.Params.description | plainify)
+  "logo" $logo
+  "sameAs" $sameAs
+  | jsonify | safeJS }}
+</script>
+{{- else -}}
+  {{- $items := slice -}}
+  {{- $pos := 0 -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- $pos = add $pos 1 -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" $pos "name" (.LinkTitle | default site.Title) "item" .Permalink) -}}
+  {{- end -}}
+  {{- $pos = add $pos 1 -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $pos "name" (.LinkTitle | default site.Title) "item" .Permalink) -}}
+<script type="application/ld+json">
+{{- dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items | jsonify | safeJS }}
+</script>
+  {{- if .IsPage -}}
+    {{- $desc := .Description | default (.Summary | plainify | chomp) -}}
+    {{- $author := .Params.author | default site.Params.author -}}
+    {{- $keywords := .Params.tags | default (slice) -}}
+<script type="application/ld+json">
+{{- dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" $desc
+  "datePublished" (.PublishDate.Format "2006-01-02T15:04:05-07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+  "author" (dict "@type" "Person" "name" $author)
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "publisher" $publisher
+  "inLanguage" .Language.Lang
+  "wordCount" .WordCount
+  "keywords" $keywords
+  | jsonify | safeJS }}
+</script>
+  {{- end -}}
+{{- end -}}

@@ -1,9 +1,10 @@
 # ============================================================
 #  站点基础配置
-#  部署到 Cloudflare Pages 后，把 baseURL 改成你的正式域名即可
-#  （例如 "https://wang-blog.pages.dev/" 或 "https://blog.yourdomain.com/"）
+#  拿到正式访问域名后，把 baseURL 改成完整域名（含结尾斜杠），例如
+#  baseURL = "https://blog.example.com/"
+#  使用相对路径 "/" 时，站点在任意域名下都能正常显示
 # ============================================================
-baseURL = "https://wang-blog.pages.dev/"
+baseURL = "/"
 title = "拾光笔记"
 locale = "zh-cn"
 defaultContentLanguage = "zh"

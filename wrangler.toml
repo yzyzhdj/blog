@@ -1,3 +1,9 @@
-name = "wang-blog"
+# Cloudflare Workers（静态资源）配置
+# 与 Workers 构建时的默认部署命令 `npx wrangler deploy` 配合使用
+name = "blog"
 compatibility_date = "2026-11-15"
-pages_build_output_dir = "public"
+
+[assets]
+directory = "./public"
+# 找不到路径时返回 public/404.html
+not_found_handling = "404-page"

@@ -1,5 +1,5 @@
 /*
- * 拾光笔记 · 设计系统（基于 PaperMod）
+ * 汉德君的博客 · 设计系统（基于 PaperMod）
  * 深色优先、科技感：冷色渐变 / 网格光晕 / 玻璃质感
  */
 
@@ -98,8 +98,15 @@ kbd {
 }
 
 .logo a {
+    font-size: 22px;
     font-weight: 750;
     letter-spacing: -0.03em;
+}
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 18px;
+    }
 }
 
 .logo a svg {

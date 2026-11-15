@@ -287,6 +287,24 @@ kbd {
     transform: translateY(-2px);
 }
 
+.hero-social {
+    margin-top: 20px;
+}
+
+.hero-social .social-icons a {
+    color: var(--secondary);
+    transition: color 0.2s ease;
+}
+
+.hero-social .social-icons a:hover {
+    color: var(--accent);
+}
+
+.hero-social .social-icons a svg {
+    width: 18px;
+    height: 18px;
+}
+
 .hero-stats {
     display: flex;
     flex-wrap: wrap;

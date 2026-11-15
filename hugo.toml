@@ -20,9 +20,9 @@ theme = "PaperMod"
 # ------------------------------------------------------------
 [params]
   env = "production"
-  description = "汉德君的博客 —— 记录技术、设计与生活里的微小光亮。"
+  description = "汉德君的博客 —— 14 年信息化与数字化管理实践，记录技术战略、AI 落地与团队治理。"
   author = "汉德君"
-  keywords = ["博客", "Hugo", "前端开发", "云原生", "独立开发", "随笔"]
+  keywords = ["信息化", "数字化转型", "技术管理", "CTO", "CIO", "人工智能", "网络安全", "等保合规"]
   defaultTheme = "dark"          # auto / light / dark
   mainSections = ["posts"]
 
@@ -51,21 +51,18 @@ theme = "PaperMod"
 
   # 首页 Hero 文案
   [params.hero]
-    eyebrow = "PERSONAL BLOG · ENGINEERING & PRODUCT"
-    title = "工程实践，"
-    titleAccent = "讲得简单一点"
-    description = "记录前端工程、云原生与独立开发路上的思考与实践。写代码，也写生活；慢一点，但持续生长。"
+    eyebrow = "CTO / CIO · DIGITAL TRANSFORMATION · AI"
+    title = "把复杂的信息化，"
+    titleAccent = "做成可复用的能力"
+    description = "14 年信息化与数字化管理经验，历任集团信息化负责人、科技公司副总经理。在这里记录技术战略、AI 落地、安全合规与团队治理的实践。"
 
-  # 社交图标：取消注释并替换成自己的链接即可出现在首页与文章底部
-  # [[params.socialIcons]]
-  #   name = "github"
-  #   url = "https://github.com/yourname"
-  # [[params.socialIcons]]
-  #   name = "mail"
-  #   url = "mailto:you@example.com"
-  # [[params.socialIcons]]
-  #   name = "x"
-  #   url = "https://x.com/yourname"
+  # 社交图标
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:592568992@qq.com"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "https://www.handejun.com/index.xml"
 
   # favicon 等静态资源
   [params.assets]
